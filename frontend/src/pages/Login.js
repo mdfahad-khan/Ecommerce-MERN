@@ -1,41 +1,65 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import loginIcons from "../assest/signin.gif";
-import { FaEye } from "react-icons/fa";
-import { FaEyeSlash } from "react-icons/fa";
-import { Link } from "react-router-dom";
+import { FaEye, FaEyeSlash } from "react-icons/fa";
+import { Link, useNavigate } from "react-router-dom";
+import SummaryApi from "../Common";
+import { toast } from "react-toastify";
+import Context from "../context";
+
 const Login = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [data, setData] = useState({
     email: "",
     password: "",
   });
+  const navigate = useNavigate();
+  const { fetchUserDetails } = useContext(Context);
+
   const handleOnChange = (e) => {
     const { name, value } = e.target;
-    setData((prev) => {
-      return {
-        ...prev,
-        [name]: value,
-      };
-    });
+    setData((prev) => ({
+      ...prev,
+      [name]: value,
+    }));
   };
-  const handleSubmit = (e) => {
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
+    try {
+      const dataResponse = await fetch(SummaryApi.singIn.url, {
+        method: SummaryApi.singIn.method,
+        credentials: "include",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(data),
+      });
+      const dataApi = await dataResponse.json();
+      if (dataApi.success) {
+        toast.success(dataApi.message);
+
+        navigate("/");
+        fetchUserDetails();
+      } else {
+        toast.error(dataApi.message);
+      }
+    } catch (error) {
+      toast.error("An error occurred. Please try again.");
+    }
   };
-  console.log("data login", data);
+
   return (
     <section id="login">
       <div className="mx-auto container p-4">
-        <div className="bg-white p-2 py-5 w-full max-w-sm mx-auto ">
+        <div className="bg-white p-2 py-5 w-full max-w-sm mx-auto">
           <div className="w-20 h-20 mx-auto">
-            <img src={loginIcons} alt="login icon" className="" />
+            <img src={loginIcons} alt="login icon" />
           </div>
-          <form className="flex flex-col gap-3">
+          <form className="flex flex-col gap-3" onSubmit={handleSubmit}>
             <div>
               <label>Email:</label>
-              <div className=" bg-slate-100 p-2">
+              <div className="bg-slate-100 p-2">
                 <input
                   type="email"
-                  className=" w-full h-full outline-none bg-transparent"
+                  className="w-full h-full outline-none bg-transparent"
                   placeholder="Enter your email address"
                   onChange={handleOnChange}
                   name="email"
@@ -45,7 +69,7 @@ const Login = () => {
             </div>
             <div>
               <label>Password:</label>
-              <div className=" bg-slate-100 p-2 flex ">
+              <div className="bg-slate-100 p-2 flex">
                 <input
                   type={showPassword ? "text" : "password"}
                   placeholder="Enter your password"
@@ -58,11 +82,11 @@ const Login = () => {
                   className="cursor-pointer text-xl text-gray-600"
                   onClick={() => setShowPassword((prev) => !prev)}
                 >
-                  <span>{showPassword ? <FaEyeSlash /> : <FaEye />}</span>
+                  {showPassword ? <FaEyeSlash /> : <FaEye />}
                 </div>
               </div>
               <Link
-                to={`/forgot-password`}
+                to="/forgot-password"
                 className="block w-fit ml-auto hover:underline hover:text-red-600"
               >
                 Forgot password

@@ -31,6 +31,7 @@ const userSchema = new mongoose.Schema(
     },
     password: String,
     profilePic: String,
+    role: String,
   },
   {
     timestamps: true, // Ensure this key is spelled correctly
