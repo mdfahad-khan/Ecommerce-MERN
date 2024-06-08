@@ -8,7 +8,7 @@ import { MdDelete } from "react-icons/md";
 import SummaryApi from "../Common";
 import { toast } from "react-toastify";
 
-const UploadProduct = () => {
+const UploadProduct = ({onClose, fetchData}) => {
   const [data, setData] = useState({
     productName: "",
     brandName: "",
@@ -66,6 +66,7 @@ const UploadProduct = () => {
     const responseData = await response.json();
     if (responseData.success) {
       toast.success(responseData?.message);
+      fetchData();
       setIsModalOpen(false); // Close the modal on successful upload
     } else if (responseData.error) {
       toast.error(responseData?.message);

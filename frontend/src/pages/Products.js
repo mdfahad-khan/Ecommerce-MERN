@@ -29,23 +29,23 @@ const Products = () => {
       <div className="bg-white py-2 px-4 flex justify-between items-center">
         <h2 className="font-bold text-lg"> All Products</h2>
         <button
-          className="border-2 border-red-600 text-red-600 hover:bg-red-600 hover:text-white transition-all py-1 px-3 rounded-full"
+          className="border-2 border-blue-600 text-blue-600 hover:bg-green-600 hover:text-white transition-all py-1 px-3 rounded-full"
           onClick={() => setOpenUploadProduct(true)}
         >
           Upload Product
         </button>
       </div>
       {/* all product */}
-      <div className="grid grid-cols-5 items-center justify-center gap-4 py-4">
+      <div className="flex items-center flex-wrap gap-5 py-4 h-[calc(100vh-190px)] overflow-y-scroll">
         {allProducts.map((product, index) => {
           return (
-            <AdminProductCard data={product} key={index + "allproducts"} />
+            <AdminProductCard data={product} key={index + "allproducts"} fetchData={fetchAllProducts} />
           );
         })}
       </div>
       {/* upload product component */}
       {openUploadProduct && (
-        <UploadProduct onclose={() => setOpenUploadProduct(false)} />
+        <UploadProduct onclose={() => setOpenUploadProduct(false)} fetchData={fetchAllProducts} />
       )}
     </div>
   );
