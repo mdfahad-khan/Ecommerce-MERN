@@ -1,3 +1,4 @@
+// const backendDomain = "http://localhost:8000";
 const backendDomain = "http://ecommerce-mern-api-psi.vercel.app";
 const SummaryApi = {
   signUp: {
