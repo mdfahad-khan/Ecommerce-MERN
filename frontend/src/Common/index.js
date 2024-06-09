@@ -1,5 +1,5 @@
 // const backendDomain = "http://localhost:8000";
-const backendDomain = "http://ecommerce-mern-api-psi.vercel.app";
+const backendDomain = "https://ecommerce-mern-backend-99as.onrender.com";
 const SummaryApi = {
   signUp: {
     url: `${backendDomain}/api/signup`,
