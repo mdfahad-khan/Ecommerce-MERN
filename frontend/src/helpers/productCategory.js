@@ -12,5 +12,4 @@ const productCategory = [
   { id: 11, label: "Televisions", value: "televisions" },
   { id: 12, label: "Watches", value: "watches" },
 ];
-
 export default productCategory;

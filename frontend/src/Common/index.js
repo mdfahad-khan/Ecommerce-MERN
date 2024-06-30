@@ -1,5 +1,5 @@
-// const backendDomain = "http://localhost:8000";
-const backendDomain = "https://ecommerce-mern-backend-99as.onrender.com";
+const backendDomain = "http://localhost:8000";
+// const backendDomain = "https://ecommerce-mern-backend-99as.onrender.com";
 const SummaryApi = {
   signUp: {
     url: `${backendDomain}/api/signup`,
@@ -39,7 +39,7 @@ const SummaryApi = {
   },
   categoryProduct: {
     url: `${backendDomain}/api/get-categoryProduct`,
-    method: 'get'
+    method: "get",
   },
   categoryWiseProduct: {
     url: `${backendDomain}/api/category-product`,
@@ -54,24 +54,20 @@ const SummaryApi = {
     method: "post",
   },
   addTocartProductCount: {
-
     url: `${backendDomain}/api/countAddToCartProduct`,
     method: "get",
-
   },
   addToCartProductView: {
     url: `${backendDomain}/api/view-card-product`,
     method: "get",
-
   },
   updateCartProduct: {
     url: `${backendDomain}/api/update-cart-product`,
     method: "post",
-
   },
   deleteCartProduct: {
     url: `${backendDomain}/api/delete-cart-product`,
-    method: 'post'
+    method: "post",
   },
   searchProduct: {
     url: `${backendDomain}/api/search`,
@@ -79,7 +75,7 @@ const SummaryApi = {
   },
   filterProduct: {
     url: `${backendDomain}/api/filter-product`,
-    method: 'post'
-  }
-}
+    method: "post",
+  },
+};
 export default SummaryApi;
