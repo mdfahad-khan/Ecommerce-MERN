@@ -5,33 +5,40 @@ import { Link, Outlet, useNavigate } from "react-router-dom";
 import ROLE from "../Common/role";
 
 const AdminPanel = () => {
-  const user = useSelector((state) => state?.user?.user);
   const navigate = useNavigate();
+  const user = useSelector((state) => state?.user?.user);
+
   useEffect(() => {
-    if (user?.role !== ROLE.ADMIN) {
+    if (user && user.role !== ROLE.ADMIN) {
       navigate("/");
     }
-  }, [user]);
+  }, [user, navigate]);
+
+  if (!user) {
+    // Show a loading state or redirect if user data is not yet available
+    return <div>Loading...</div>;
+  }
+
   return (
     <div className="min-h-[calc(100vh-120px)] md:flex hidden">
-      <aside className="bg-white min-h-full w-full max-w-60  customShadow">
+      <aside className="bg-white min-h-full w-full max-w-60 customShadow">
         <div className="h-32 flex justify-center items-center flex-col mt-4">
           <div className="text-5xl cursor-pointer relative flex justify-center ">
-            {user?.profilePic ? (
+            {user.profilePic ? (
               <img
                 src={user.profilePic}
                 className="w-20 h-20 rounded-full"
-                alt={user?.name}
+                alt={user.name}
               />
             ) : (
               <FaRegCircleUser />
             )}
           </div>
-          <p className="text-lg capitalize font-semibold mt-2">{user?.name}</p>
-          <p>{user?.role}</p>
+          <p className="text-lg capitalize font-semibold mt-2">{user.name}</p>
+          <p>{user.role}</p>
         </div>
         <div>
-          <nav className=" grid p-4">
+          <nav className="grid p-4">
             <Link to={"all-user"} className="px-2 py-1 hover:bg-slate-100">
               All Users
             </Link>
