@@ -1,7 +1,7 @@
 const backendDomain =
   process.env.NODE_ENV === "production"
-    ? process.env.REACT_APP_PRODUCTION_URL
-    : process.env.REACT_APP_BASE_URL;
+    ? "https://ecommerce-mern-backend-99as.onrender.com"
+    : "http://localhost:8000";
 
 const SummaryApi = {
   signUp: {
