@@ -11,6 +11,10 @@ import CategoryProduct from "../pages/CategoryProduct";
 import ProductDetails from "../pages/ProductDetails";
 import Cart from "../pages/Cart";
 import SearchProduct from "../pages/SearchProduct";
+import Success from "../pages/Success";
+import Cancel from "../pages/Cancel";
+import OrderPage from "../pages/OrderPage";
+import PaymentPage from "../pages/PaymentPage";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -33,21 +37,37 @@ const router = createBrowserRouter([
         element: <SignUp />,
       },
       {
-        path:"product-category",
-        element: <CategoryProduct />
+        path: "product-category",
+        element: <CategoryProduct />,
       },
       {
-        path:"product/:id",
-        element:<ProductDetails />
+        path: "product/:id",
+        element: <ProductDetails />,
       },
       {
-        path:"cart",
-        element:<Cart />
+        path: "cart",
+        element: <Cart />,
       },
       {
-        path : "search",
-        element : <SearchProduct />
-    },
+        path: "success",
+        element: <Success />,
+      },
+      {
+        path: "cancel",
+        element: <Cancel />,
+      },
+      {
+        path: "order",
+        element: <OrderPage />,
+      },
+      {
+        path: "payment",
+        element: <PaymentPage />,
+      },
+      {
+        path: "search",
+        element: <SearchProduct />,
+      },
       {
         path: "admin-panel",
         element: <AdminPanel />,
@@ -67,3 +87,5 @@ const router = createBrowserRouter([
 ]);
 
 export default router;
+
+// npm i @stripe/stripe-js

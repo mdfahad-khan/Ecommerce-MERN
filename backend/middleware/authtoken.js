@@ -10,11 +10,12 @@ async function authToken(req, res, next) {
           .split("=")[1]
       : null;
 
+    console.log("token", token);
     if (!token) {
       return res.status(200).json({
         message: "Please Login......",
-        error: true,
-        success: false,
+        error: false,
+        success: true,
       });
     }
 
