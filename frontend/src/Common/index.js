@@ -1,6 +1,6 @@
 const backendDomain =
   process.env.NODE_ENV === "production"
-    ? "https://vercel.com/fahads-projects-56589717/ecommerce-mern-backend"
+    ? "https://ecommerce-mern-backend-99as.onrender.com"
     : "http://localhost:8000";
 
 const SummaryApi = {
