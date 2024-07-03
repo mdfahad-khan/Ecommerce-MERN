@@ -26,24 +26,28 @@ const Login = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const dataResponse = await fetch(SummaryApi.singIn.url, {
+      const response = await fetch(SummaryApi.singIn.url, {
         method: SummaryApi.singIn.method,
         credentials: "include",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(data),
       });
-      const dataApi = await dataResponse.json();
+
+      const dataApi = await response.json();
       if (dataApi.success) {
         toast.success(dataApi.message);
-
         navigate("/");
         fetchUserDetails();
+        console.log("userDetails", fetchUserDetails);
         fetchUserAddToCart();
+        console.log("fetchUserAddCart", fetchUserAddToCart());
       } else {
         toast.error(dataApi.message);
+        console.error("Login Error:", dataApi.message);
       }
     } catch (error) {
       toast.error("An error occurred. Please try again.");
+      console.error("Login Error:", error);
     }
   };
 
