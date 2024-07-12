@@ -15,6 +15,7 @@ import Success from "../pages/Success";
 import Cancel from "../pages/Cancel";
 import OrderPage from "../pages/OrderPage";
 import PaymentPage from "../pages/PaymentPage";
+import OAuth from "../pages/OAuth";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -67,6 +68,10 @@ const router = createBrowserRouter([
       {
         path: "search",
         element: <SearchProduct />,
+      },
+      {
+        path: "google",
+        element: <OAuth />,
       },
       {
         path: "admin-panel",

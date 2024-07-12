@@ -84,5 +84,9 @@ const SummaryApi = {
     url: `${backendDomain}/api/checkout`,
     method: "post",
   },
+  google: {
+    url: `${backendDomain}/api/google`,
+    method: "post",
+  },
 };
 export default SummaryApi;
